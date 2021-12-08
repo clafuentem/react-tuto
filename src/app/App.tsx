@@ -6,6 +6,7 @@ import NoScreen from '../screens/no-screen/NoScreen';
 import Products from '../screens/products/Products';
 import ProductDetails from '../screens/product-details/ProductDetail';
 import { useState } from 'react';
+import CartScreen from '../screens/cart/CartScreen';
 
 const App = () => {
   const [cart, setCart] = useState<any>([]);
@@ -33,6 +34,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Products onAddItemToCart={addItemToCart} />} />
         <Route path="/details" element={<ProductDetails />} />
+        <Route path="/cart" element={<CartScreen cart={cart} />} />
         <Route path="*" element={<NoScreen />} />
       </Routes>
     </ThemeProvider>

@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { Typography, LinearProgress } from '@mui/material';
+import { Typography, LinearProgress, Button } from '@mui/material';
 import useStyles from './products-styles';
 import ProductsService from '../../services/ProductsService';
 import ProductItem from '../../components/product-item/ProductItem';
+import { useNavigate } from 'react-router';
 
 const Products = ({ onAddItemToCart }) => {
   const [products, setProducts] = useState([]);
-
+  const navigate = useNavigate();
   const classes = useStyles();
+
+  const onClickMyCart = () => {
+    navigate('/cart');
+  };
 
   useEffect(() => {
     const getAsyncProducts = async () => {
@@ -31,6 +36,10 @@ const Products = ({ onAddItemToCart }) => {
       <div className={classes.header}>
         <Typography variant="h2">Página de productos</Typography>
       </div>
+      <Button onClick={onClickMyCart} variant="contained" className={classes.cartButton}>
+        Mi carrito
+      </Button>
+
       <div className={classes.productsContainer}>
         {products.map((item: any) => {
           return <ProductItem product={item} onAddItemToCart={onAddItemToCart} />;
