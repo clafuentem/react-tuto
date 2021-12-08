@@ -3,7 +3,6 @@ import theme from '../../theme';
 
 const useStyles: any = makeStyles({
   container: {
-    cursor: 'pointer',
     position: 'relative',
     width: '300px',
     background: '#fff',
@@ -13,15 +12,7 @@ const useStyles: any = makeStyles({
     margin: '20px',
     marginBottom: '50px',
     display: 'flex',
-    flexDirection: 'column',
-
-    '&:hover $imageContainer': {
-      top: '-35px'
-    },
-
-    '&:hover $image': {
-      boxShadow: '0 19px 38px rgba(0,0,0,0.20), 0 15px 12px rgba(0,0,0,0.15)'
-    }
+    flexDirection: 'column'
   },
   imageContainer: {
     position: 'absolute',
@@ -35,6 +26,19 @@ const useStyles: any = makeStyles({
     '-khtml-transform': 'translate(-50%)',
     padding: '15px',
     transition: 'all 0.2s ease-in-out'
+  },
+  topContainer: {
+    cursor: 'pointer',
+    flex: 1,
+    marginBottom: 20,
+
+    '&:hover $imageContainer': {
+      top: '-35px'
+    },
+
+    '&:hover $image': {
+      boxShadow: '0 19px 38px rgba(0,0,0,0.20), 0 15px 12px rgba(0,0,0,0.15)'
+    }
   },
   image: {
     maxWidth: '300px',
@@ -69,7 +73,7 @@ const useStyles: any = makeStyles({
   },
   actionContainer: {
     borderTop: '1px solid lightgrey',
-    marginTop: '40px',
+    marginTop: '20px',
     paddingTop: '8px',
     display: 'flex',
     alignItems: 'center',
