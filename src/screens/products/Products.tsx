@@ -4,7 +4,7 @@ import useStyles from './products-styles';
 import ProductsService from '../../services/ProductsService';
 import ProductItem from '../../components/product-item/ProductItem';
 
-const Products = () => {
+const Products = ({ onAddItemToCart }) => {
   const [products, setProducts] = useState([]);
 
   const classes = useStyles();
@@ -32,8 +32,8 @@ const Products = () => {
         <Typography variant="h2">Página de productos</Typography>
       </div>
       <div className={classes.productsContainer}>
-        {products.map((item) => {
-          return <ProductItem product={item} />;
+        {products.map((item: any) => {
+          return <ProductItem product={item} onAddItemToCart={onAddItemToCart} />;
         })}
       </div>
     </div>

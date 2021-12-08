@@ -4,12 +4,16 @@ import { Typography, Button } from '@mui/material';
 import { useNavigate } from 'react-router';
 import Counter from '../counter/Counter';
 
-const ProductItem = ({ product }) => {
+const ProductItem = ({ product, onAddItemToCart }) => {
   const classes = useStyles();
   const navigate = useNavigate();
 
   const onClickItem = () => {
     navigate('details', { state: product });
+  };
+
+  const onClickAddToCart = () => {
+    onAddItemToCart(product);
   };
 
   return (
@@ -37,7 +41,9 @@ const ProductItem = ({ product }) => {
         <Typography align="center" className={classes.priceText}>
           {`${product.unitPrice}€`}
         </Typography>
-        <Button variant="outlined">Añadir a la cesta</Button>
+        <Button onClick={onClickAddToCart} variant="outlined">
+          Añadir a la cesta
+        </Button>
       </div>
     </div>
   );
