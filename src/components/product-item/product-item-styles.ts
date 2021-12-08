@@ -82,6 +82,15 @@ const useStyles: any = makeStyles({
   priceText: {
     fontSize: '1.3rem !important',
     fontWeight: '600 !important'
+  },
+  itemsContainer: {
+    display: 'flex',
+    justifyContent: 'center'
+  },
+  itemsAddedText: {
+    color: theme.palette.primary.main,
+    fontSize: '1.1rem !important',
+    fontWeight: '600 !important'
   }
 });
 

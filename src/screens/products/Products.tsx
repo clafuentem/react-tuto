@@ -42,7 +42,7 @@ const Products = ({ onAddItemToCart }) => {
 
       <div className={classes.productsContainer}>
         {products.map((item: any) => {
-          return <ProductItem product={item} onAddItemToCart={onAddItemToCart} />;
+          return <ProductItem product={item} onAddItemToCart={onAddItemToCart} isItemAddedToCart={false} />;
         })}
       </div>
     </div>

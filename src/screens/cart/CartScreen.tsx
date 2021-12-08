@@ -14,7 +14,7 @@ const CartScreen = ({ cart }) => {
 
       <div className={classes.productsContainer}>
         {cart.map((item: any) => {
-          return <ProductItem product={item} onAddItemToCart={undefined} />;
+          return <ProductItem product={item} onAddItemToCart={undefined} isItemAddedToCart={true} />;
         })}
       </div>
     </div>

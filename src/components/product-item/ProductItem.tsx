@@ -4,7 +4,7 @@ import { Typography, Button } from '@mui/material';
 import { useNavigate } from 'react-router';
 import Counter from '../counter/Counter';
 
-const ProductItem = ({ product, onAddItemToCart }) => {
+const ProductItem = ({ product, onAddItemToCart, isItemAddedToCart }) => {
   const classes = useStyles();
   const navigate = useNavigate();
   const [numItems, setNumItems] = useState(1);
@@ -35,16 +35,28 @@ const ProductItem = ({ product, onAddItemToCart }) => {
           </Typography>
         </div>
       </div>
-      <div>
-        <Counter value={numItems} onChangeValue={setNumItems} />
+      <div className={classes.itemsContainer}>
+        {isItemAddedToCart ? (
+          <Typography className={classes.itemsAddedText}>{`${product.units} item${
+            product.units > 1 ? 's' : ''
+          } en el carrito`}</Typography>
+        ) : (
+          <Counter value={numItems} onChangeValue={setNumItems} />
+        )}
       </div>
       <div className={classes.actionContainer}>
         <Typography align="center" className={classes.priceText}>
           {`${product.unitPrice}€`}
         </Typography>
-        <Button onClick={onClickAddToCart} variant="outlined">
-          Añadir a la cesta
-        </Button>
+        {isItemAddedToCart ? (
+          <Button color="error" variant="contained">
+            Eliminar de la cesta
+          </Button>
+        ) : (
+          <Button onClick={onClickAddToCart} variant="outlined">
+            Añadir a la cesta
+          </Button>
+        )}
       </div>
     </div>
   );
