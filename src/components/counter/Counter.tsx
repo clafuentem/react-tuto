@@ -1,27 +1,26 @@
 import { Button, Typography } from '@mui/material';
-import React, { useState } from 'react';
+import React from 'react';
 import useStyles from './counter-styles';
 
-const Counter = () => {
-  const [count, setCount] = useState(0);
+const Counter = ({ value, onChangeValue }) => {
   const classes = useStyles();
 
   const onDecrementCount = () => {
-    if (count > 0) {
-      setCount(count - 1);
+    if (value > 1) {
+      onChangeValue(value - 1);
     }
   };
 
   const onIncrementCount = () => {
-    setCount(count + 1);
+    onChangeValue(value + 1);
   };
 
   return (
     <div className={classes.container}>
-      <Button className={classes.button} onClick={onDecrementCount} disabled={count === 0}>
+      <Button className={classes.button} onClick={onDecrementCount} disabled={value === 1}>
         -
       </Button>
-      <Typography>{count}</Typography>
+      <Typography>{value}</Typography>
       <Button className={classes.button} onClick={onIncrementCount}>
         +
       </Button>

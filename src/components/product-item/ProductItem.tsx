@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import useStyles from './product-item-styles';
 import { Typography, Button } from '@mui/material';
 import { useNavigate } from 'react-router';
@@ -7,13 +7,14 @@ import Counter from '../counter/Counter';
 const ProductItem = ({ product, onAddItemToCart }) => {
   const classes = useStyles();
   const navigate = useNavigate();
+  const [numItems, setNumItems] = useState(1);
 
   const onClickItem = () => {
     navigate('details', { state: product });
   };
 
   const onClickAddToCart = () => {
-    onAddItemToCart(product);
+    onAddItemToCart(product, numItems);
   };
 
   return (
@@ -35,7 +36,7 @@ const ProductItem = ({ product, onAddItemToCart }) => {
         </div>
       </div>
       <div>
-        <Counter />
+        <Counter value={numItems} onChangeValue={setNumItems} />
       </div>
       <div className={classes.actionContainer}>
         <Typography align="center" className={classes.priceText}>

@@ -10,7 +10,7 @@ import { useState } from 'react';
 const App = () => {
   const [cart, setCart] = useState<any>([]);
 
-  const addItemToCart = (item) => {
+  const addItemToCart = (item, numItemsToAdd) => {
     const itemFoundInCart = cart.find((cartItem) => {
       return cartItem.name === item.name;
     });
@@ -19,10 +19,10 @@ const App = () => {
       // El item ya está dentro del carrito. Filtramos nuestro carrito para que tenga todos los elementos menos el que hemos encontrado.
       const filteredCart = cart.filter((cartItem) => cartItem.name !== itemFoundInCart.name);
 
-      setCart([...filteredCart, { ...item, units: itemFoundInCart.units + 1 }]);
+      setCart([...filteredCart, { ...item, units: itemFoundInCart.units + numItemsToAdd }]);
     } else {
-      // El item aún no ha sido añadido, lo anadimos y ponemos su valor de units a 1
-      setCart([...cart, { ...item, units: 1 }]);
+      // El item aún no ha sido añadido, lo anadimos y ponemos su valor de units a `numItemsToAdd`
+      setCart([...cart, { ...item, units: numItemsToAdd }]);
     }
   };
 
