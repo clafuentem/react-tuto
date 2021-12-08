@@ -27,14 +27,23 @@ const App = () => {
     }
   };
 
+  const removeItemFromCart = (item) => {
+    const filteredCart = cart.filter((cartItem) => cartItem.name !== item.name);
+
+    setCart(filteredCart);
+  };
+
   console.log('my carrito', cart);
 
   return (
     <ThemeProvider theme={theme}>
       <Routes>
-        <Route path="/" element={<Products cart={cart} onAddItemToCart={addItemToCart} />} />
+        <Route
+          path="/"
+          element={<Products cart={cart} onAddItemToCart={addItemToCart} onRemoveItemFromCart={removeItemFromCart} />}
+        />
         <Route path="/details" element={<ProductDetails />} />
-        <Route path="/cart" element={<CartScreen cart={cart} />} />
+        <Route path="/cart" element={<CartScreen cart={cart} onRemoveItemFromCart={removeItemFromCart} />} />
         <Route path="*" element={<NoScreen />} />
       </Routes>
     </ThemeProvider>

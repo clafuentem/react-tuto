@@ -5,7 +5,7 @@ import ProductsService from '../../services/ProductsService';
 import ProductItem from '../../components/product-item/ProductItem';
 import { useNavigate } from 'react-router';
 
-const Products = ({ cart, onAddItemToCart }) => {
+const Products = ({ cart, onAddItemToCart, onRemoveItemFromCart }) => {
   const [products, setProducts] = useState([]);
   const navigate = useNavigate();
   const classes = useStyles();
@@ -45,9 +45,23 @@ const Products = ({ cart, onAddItemToCart }) => {
           const itemAddedToCart = cart.find((cartItem) => cartItem.name === item.name);
 
           if (itemAddedToCart) {
-            return <ProductItem product={itemAddedToCart} onAddItemToCart={onAddItemToCart} isItemAddedToCart={true} />;
+            return (
+              <ProductItem
+                product={itemAddedToCart}
+                onAddItemToCart={onAddItemToCart}
+                onRemoveItemFromCart={onRemoveItemFromCart}
+                isItemAddedToCart={true}
+              />
+            );
           } else {
-            return <ProductItem product={item} onAddItemToCart={onAddItemToCart} isItemAddedToCart={false} />;
+            return (
+              <ProductItem
+                product={item}
+                onAddItemToCart={onAddItemToCart}
+                onRemoveItemFromCart={onRemoveItemFromCart}
+                isItemAddedToCart={false}
+              />
+            );
           }
         })}
       </div>

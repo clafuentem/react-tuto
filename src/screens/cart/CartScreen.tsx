@@ -3,7 +3,7 @@ import React from 'react';
 import useStyles from './cart-screen-styles';
 import ProductItem from '../../components/product-item/ProductItem';
 
-const CartScreen = ({ cart }) => {
+const CartScreen = ({ cart, onRemoveItemFromCart }) => {
   const classes = useStyles();
 
   return (
@@ -14,7 +14,14 @@ const CartScreen = ({ cart }) => {
 
       <div className={classes.productsContainer}>
         {cart.map((item: any) => {
-          return <ProductItem product={item} onAddItemToCart={undefined} isItemAddedToCart={true} />;
+          return (
+            <ProductItem
+              product={item}
+              onAddItemToCart={undefined}
+              isItemAddedToCart={true}
+              onRemoveItemFromCart={onRemoveItemFromCart}
+            />
+          );
         })}
       </div>
     </div>

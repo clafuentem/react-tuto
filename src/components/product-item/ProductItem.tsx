@@ -4,7 +4,7 @@ import { Typography, Button } from '@mui/material';
 import { useNavigate } from 'react-router';
 import Counter from '../counter/Counter';
 
-const ProductItem = ({ product, onAddItemToCart, isItemAddedToCart }) => {
+const ProductItem = ({ product, onAddItemToCart, isItemAddedToCart, onRemoveItemFromCart }) => {
   const classes = useStyles();
   const navigate = useNavigate();
   const [numItems, setNumItems] = useState(1);
@@ -15,6 +15,10 @@ const ProductItem = ({ product, onAddItemToCart, isItemAddedToCart }) => {
 
   const onClickAddToCart = () => {
     onAddItemToCart(product, numItems);
+  };
+
+  const onClickRemoveItem = () => {
+    onRemoveItemFromCart(product);
   };
 
   return (
@@ -49,7 +53,7 @@ const ProductItem = ({ product, onAddItemToCart, isItemAddedToCart }) => {
           {`${product.unitPrice}€`}
         </Typography>
         {isItemAddedToCart ? (
-          <Button color="error" variant="contained">
+          <Button onClick={onClickRemoveItem} color="error" variant="contained">
             Eliminar de la cesta
           </Button>
         ) : (
