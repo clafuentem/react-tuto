@@ -32,7 +32,7 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <Routes>
-        <Route path="/" element={<Products onAddItemToCart={addItemToCart} />} />
+        <Route path="/" element={<Products cart={cart} onAddItemToCart={addItemToCart} />} />
         <Route path="/details" element={<ProductDetails />} />
         <Route path="/cart" element={<CartScreen cart={cart} />} />
         <Route path="*" element={<NoScreen />} />

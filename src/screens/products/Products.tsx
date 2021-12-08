@@ -5,7 +5,7 @@ import ProductsService from '../../services/ProductsService';
 import ProductItem from '../../components/product-item/ProductItem';
 import { useNavigate } from 'react-router';
 
-const Products = ({ onAddItemToCart }) => {
+const Products = ({ cart, onAddItemToCart }) => {
   const [products, setProducts] = useState([]);
   const navigate = useNavigate();
   const classes = useStyles();
@@ -42,7 +42,13 @@ const Products = ({ onAddItemToCart }) => {
 
       <div className={classes.productsContainer}>
         {products.map((item: any) => {
-          return <ProductItem product={item} onAddItemToCart={onAddItemToCart} isItemAddedToCart={false} />;
+          const itemAddedToCart = cart.find((cartItem) => cartItem.name === item.name);
+
+          if (itemAddedToCart) {
+            return <ProductItem product={itemAddedToCart} onAddItemToCart={onAddItemToCart} isItemAddedToCart={true} />;
+          } else {
+            return <ProductItem product={item} onAddItemToCart={onAddItemToCart} isItemAddedToCart={false} />;
+          }
         })}
       </div>
     </div>
